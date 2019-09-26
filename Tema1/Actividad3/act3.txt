@@ -1,0 +1,5 @@
+3.La  tecnología  Flash  está  siendo  sustituida  progresivamente  por  
+capacidades similares dentro del estándar HTML5. Investiga cuál es el 
+soporte que HTML 5 propone para la visualización de contenido multimedia. 
+
+Html5 incorpora etiquetas nuevas como <audio> y <video>
