@@ -42,7 +42,7 @@ alert(`La resta es ${resta}`);
 
 // No se como hacer esto
 var o1 = false;
-for (var i = 0; i < verdad.length; i++) {
+for (var i = 0; i < verdad.length -1; i++) {
     o1 = verdad[i] && verdad[i+1];
 }
 alert(`${o1}`);
