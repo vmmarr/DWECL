@@ -1,4 +1,4 @@
-var valores = [true, 5, false, "hola", "adios", 2];
+var valores = [true, 5, true, "hola", "adios", 2];
 var numeros = [];
 var palabras = [];
 var verdad = [];
@@ -17,6 +17,10 @@ for (var i = 0; i < valores.length; i++) {
     }
 }
 
+alert(numeros);
+alert(verdad);
+alert(palabras);
+
 var mayor = '';
 for (var i = 0; i < palabras.length; i++) {			
     if (palabras[i].length > mayor.length) {
@@ -25,7 +29,6 @@ for (var i = 0; i < palabras.length; i++) {
 }
 alert(`La palabra mayor es ${mayor}`);
 
-// No se como solucionar la resta
 var suma = 0;
 var resta = 0;
 
@@ -38,7 +41,8 @@ alert(`La suma es ${suma}`);
 alert(`La resta es ${resta}`);
 
 // No se como hacer esto
-var o1;
+var o1 = false;
 for (var i = 0; i < verdad.length; i++) {
-
+    o1 = verdad[i] && verdad[i+1];
 }
+alert(`${o1}`);
