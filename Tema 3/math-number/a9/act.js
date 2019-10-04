@@ -1,0 +1,1 @@
+alert(Math.PI.toFixed(4));
