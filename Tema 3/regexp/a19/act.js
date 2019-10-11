@@ -16,21 +16,30 @@ if (r == null) {
         }
     }
 }
-console.log(r);
 
-for (var i = 1; i < r.length; i++) {
-    switch (i) {
-        case 1:
-            if (r[i] > 23) {
-                alert('La hora es incorrecta');
-                i  = r.length;
-            }
-            break; 
-        case 2:
-        case 3:
-            if (r[i] <= 60) {
-                alert('dd');
-                i  = r.length;
-            }
-    }  
+function comprobar(r) {
+    var v = true;
+    for (var i = 1; i < r.length; i++) {
+        switch (i) {
+            case 1:
+                if (r[i] >= 24) {
+                    alert('La hora es incorrecta');
+                    v = false;
+                    i  = r.length;
+                }
+                break; 
+            case 2:
+            case 3:
+                if (r[i] >= 60) {
+                    alert('La hora es incorrecta');
+                    v = false;
+                    i  = r.length;
+                }
+        }  
+    }
+    return v;
+}
+
+if (comprobar(r)) {
+    alert('La hora es correcta');
 }
