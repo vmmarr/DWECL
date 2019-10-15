@@ -8,11 +8,17 @@ var r = p.exec(matricula);
 
 console.log(r);
 
-for (var i = 0; i < r[1].lengt; i++) {
-    for (var j = 0; j < r[i].length; j++){
-        if (p1.test(r[j])) {
-            alert('La matricula es incorrecta');
+if (r == null) {
+    alert('La matricula es incorrecta');
+} else {
+    for (var i = 0; i < r[1].length; i++) {
+        for (var j = 0; j < r[i].length; j++){
+            if (p1.test(r[j])) {
+                alert('La matricula es incorrecta');
+                i = r[1].length;
+            }
         }
     }
+
 }
 
