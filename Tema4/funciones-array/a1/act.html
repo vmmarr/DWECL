@@ -7,7 +7,7 @@
 </head>
 <body>
     <form>
-        <fieldset> 
+        <fieldset style="width:45%"> 
             <legend>Convertir de base 10 a base x</legend>
             <label for="num1">Introduzca un numero en base 10</label>
             <input type="text" id="num1"><br>
@@ -19,12 +19,12 @@
     </form>
     <br>
     <form>
-        <fieldset>
+        <fieldset style="width:45%">
             <legend>Convertir de base X a base 10</legend>
             <label for="num2">Introduzca un numero</label>
             <input type="text" id="num2"><br>
             <label for="base2">Introduzca la base en la  que se encuentra</label>
-            <input type="number" min="2" max="36"><br>
+            <input type="number" id="base2" min="2" max="36"><br>
             <input type="button" value="Convertir" onclick="convertir2()">
             <input type="text" id="resultado2" disabled>
         </fieldset>
