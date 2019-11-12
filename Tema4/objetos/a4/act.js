@@ -24,14 +24,17 @@ function Cliente(nombre, direccion, telefono, nif) {
 Factura.prototype.calculaBase = function() {
     var total = 0;
     for (var i = 0; i < this.elementos.length; i++) {
-        total += parseFloat(this.elementos[i][1] * this.elementos[i][2]);
+        total += parseFloat(this.elementos[i].cantidad * this.elementos[i].precio);
     }
+    // console.log(total);
     this.baseImponible = total;
 }
 
 Factura.prototype.calculaTotal = function() {
     this.calculaBase();
-    this.total = parseFloat(this.baseImponible) * (1 + (parseFloat(this.iva) / 100));
+    // console.log(this.baseImponible);
+    // console.log(this.info.iva);
+    this.total = parseFloat(this.baseImponible) * (1 + (parseFloat(this.info.iva)));
 }
 
 Factura.prototype.muestraTotal = function() {
