@@ -1,40 +1,58 @@
-function Empleado(nombre = '', departamento = 'General') {
-    this.nombre = nombre;
-    this.departamento = departamento;
+class Empleado {
+    constructor(nombre, departamento) {
+        this.__nombre = nombre || '';
+        this.__departamento = departamento || "General";
+    }
+
+    obtDetalles() {
+        for (var i in this){
+            if (typeof this[i] != 'function') {
+                console.log(this[i]);
+            }
+        }
+    }
 }
 
-function Director(nombre, departamento, informes = []) {
-    Empleado.call(this, nombre, departamento);
-    this.informes = informes;
+class Director extends Empleado {
+    constructor(nombre, departamento, informes) {
+        super(nombre, departamento);
+
+        //this._departamento = departamento || 'General';
+        this.__informes = informes || [];
+    }
 }
 
-Director.prototype = new Empleado();
+class Trabajador extends Empleado {
+    constructor(nombre, departamento, proyectos) {
+        super(nombre, departamento);
 
-function Trabajador(nombre, departamento, proyectos = []) {
-    Empleado.call(this, nombre, departamento);
-    this.proyectos = proyectos;
+        this.__proyectos = proyectos || [];
+    }
 }
 
-Trabajador.prototype = new Empleado();
+class Ingeniero extends Trabajador {
+    constructor(nombre, departamento, proyectos, maquina) {
+        super(nombre, departamento, proyectos);
 
-function Ingeniero(nombre, departamento = 'Ingenieria', proyectos, maquina = '') {
-    Trabajador.call(this, nombre, departamento, proyectos);
-    this.maquina = maquina;
+        this.__maquina = maquina || '';
+        this.__departamento = departamento || 'Ingenieria';
+    }
 }
-Ingeniero.prototype = new Trabajador();
 
-Empleado.prototype.obtDetalles = function(){
-    for (var i in this) {
-        if (this.hasOwnProperty(i)) {
-             console.log(`${i}: ${this[i]}`);
-         }
-    } 
-};
+var e = new Empleado('pepe');
+e.obtDetalles();
 
-var d1 = new Director();
-var t1 = new Trabajador();
-var i1 = new Ingeniero();
+console.log('');
 
-d1.obtDetalles();
-t1.obtDetalles();
-i1.obtDetalles();
+var d = new Director('juan', 'General');
+d.obtDetalles();
+
+console.log('');
+
+var t = new Trabajador('Pepe', 'General');
+t.obtDetalles();
+
+console.log('');
+
+var i = new Ingeniero('Alvaro', 'General', [], 'ordenador');
+i.obtDetalles();
