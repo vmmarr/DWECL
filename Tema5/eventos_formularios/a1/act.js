@@ -1,19 +1,10 @@
-var b = document.createElement('button');
-var t = document.createTextNode('Pulsame');
-b.appendChild(t);
-b.setAttribute('id', 'boton');
-document.body.appendChild(b);
-
-b.addEventListener('mousedown', pulsado);
-
-function pulsado() {
-    var o;
-    switch (o) {
-        case value:
-            
+window.onmousedown = function(e) {
+    switch (e.button) {
+        case 0: alert('Has pulsado el boton izquierdo');
             break;
-    
-        default:
+        case 1:alert('Has pulsado el boton central');
+            break;
+        case 2: alert('Has pulsado el boton derecho');
             break;
     }
 }
