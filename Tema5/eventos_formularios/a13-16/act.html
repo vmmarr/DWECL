@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="act.js" defer></script>
+    <title>Actividad 13</title>
+</head>
+<body>
+    <div>
+        <fieldset>
+            <legend>Datos personales</legend>
+            <form>
+                <label for="nombre">Introduce tu nombre:</label>
+                <input type="text" id="nombre"> <br>
+                <label for="mensaje">Mensaje:</label><br>
+                <textarea id="mensaje" cols="90" rows="10"></textarea>
+            </form>
+        </fieldset>
+    </div>
+    <p>Elige un color:</p>
+	<form id="color">
+		<input type="radio" name="r" value="rojo" id="rojo">Rojo<br>
+		<input type="radio" name="r" value="verde" id="verde">Verde<br>
+		<input type="radio" name="r" value="azul" id="azul">Azul<br>
+    </form>
+    Selecciona una asignatura: 
+	<select id="asignatura">
+		<option value="Lenguas" id="len">Lengua</option>
+		<option value="Matemaicas" id="mat">Matemaicas</option>
+		<option value="Ingles" id="in">Ingles</option>
+	</select>
+	<br>
+	<p>Selecciona los dias con disponibilidad:</p>
+	<form>
+		<input type="checkbox" name="dia" value="lunes">Lunes <br>
+		<input type="checkbox" name="dia" value="martes">Martes <br>
+		<input type="checkbox" name="dia" value="miercoles">Miercoles <br>
+		<input type="checkbox" name="dia" value="jueves">Jueves <br>
+		<input type="checkbox" name="dia" value="viernes">Viernes <br>
+	</form>
+	<br>
+	Selecciona el dia preferente: 
+	<select id="dia">
+		<option value="Lunes" id="l">Lunes</option>
+		<option value="Martes" id="m">Martes</option>
+		<option value="Miercoles" id="mi">Miercoles</option>
+		<option value="Jueves" id="j">Jueves</option>
+		<option value="Viernes" id="v">Viernes</option>
+	</select>
+	<br><br>
+	<button id="en">Haz clic para enviar informacion</button>
+	<button id="re">Comenzar a rellenar de nuevo</button>
+	<button id="ir">Haz clic sobre mi</button>
+</body>
+</html>
