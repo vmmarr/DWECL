@@ -7,7 +7,7 @@ function getCookie(name) {
       begin += cname.length;
       end = dc.indexOf(";", begin);
       if (end == -1) end = dc.length;
-      return decodeURIComponent(dc.substring(begin, end));
+      return  name +': '+ decodeURIComponent(dc.substring(begin, end));
     }
   }
   return null;

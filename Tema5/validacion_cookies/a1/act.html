@@ -5,35 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="act.js" defer></script>
+    <script src="../cookie.js"></script>
     <title>Actividad 1</title>
 </head>
 <body>
     <form>
         <label for="dni">DNI:</label>
-        <input pattern="\d{8}[a-zA-Z]" name="dni" type="text">
+        <input pattern="\d{8}[a-zA-Z]" id="dni" name="dni" type="text">
         <br>
         <label for="nombre">Nombre:</label>
-        <input pattern="\w+\s\w+(\s\w+|\s\w+\s\w+)?" name="nombre" type="text">
+        <input pattern="\w+\s\w+" name="nombre" id="nombre" type="text">
         <br>
         <label for="fnac">Fecha de nacimiento:</label>
-        <input pattern="(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])\/(19|20)\d{2}" name="fnac" type="text">
+        <input id="fnac" pattern="(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])\/(19|20)\d{2}" name="fnac" type="text">
         <br>
         <label for="email">Email:</label>
-        <input pattern="\w+@\w+\.\w+" name="email" type="text">
+        <input id="email" pattern="\w+@\w+\.\w+" name="email" type="text">
         <br>
         <label for="pagweb">Pág. Web:</label>
-        <input pattern="http:\/\/www\.\w+\.([a-z]){2,3}" name="pagweb" type="web">
+        <input id="pagweb" pattern="(www\.)?\w+\.([a-z]){2,3}" name="pagweb" type="web">
         <br>
         <label for="contrasena">Contraseña:</label>
-        <input pattern=".{8,10}" name="contrasena" type="text">
+        <input id="contrasena" pattern=".{8,10}" name="contrasena" type="text">
         <br>
-        <label for="confirmar-contrasena">Confirmar contraseña:</label>
-        <input pattern=".{8,10}" name="confirmar-contrasena" type="text"><br>
-        <label for="num-hijos">Numeros de hijos</label>
-        <input pattern="(10)?|[0-9]" type="text" name="num-hijos">
+        <label for="confirmarContrasena">Confirmar contraseña:</label>
+        <input id="confirmarContrasena" pattern=".{8,10}" name="confirmar-contrasena" type="text">
+        <br>
+        <label for="numHijos">Numeros de hijos</label>
+        <input id="numHijos" pattern="(10)?|[0-9]" type="text" name="num-hijos">
         <br>
         <br>
-        <input type="submit" value="GUARDAR">
+        <input type="button" value="GUARDAR" id="guardar">
         <input type="button" id="ver" value="Ver">
     </form>
 </body>
