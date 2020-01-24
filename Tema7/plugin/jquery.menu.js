@@ -11,14 +11,23 @@
         },
 
         delSection: function() {
+            // Comprobar si la seccion tiene hijos probando con el metodo find() o coon el children()
+            // amboos con el .length
             $(this).remove();
         },
 
         addOption: function(texto) {
-            $(this).append(`<ul><li>${texto}</le</ul>`);
+            if ($(this).children().length <= 0) {
+                $(this).append(`<ul></ul>`);
+                $(this).children([0]).append(`<li>${texto}</li>`);
+            } else {
+                $(this).children([0]).append(`<li>${texto}</li>`);
+            }
         },
 
         delOption: function() {
+            // Comprobar si la seccion tiene hijos probando con el metodo find() o coon el children()
+            // amboos con el .length
             $(this).remove();
         }
     };
