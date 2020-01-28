@@ -1,21 +1,17 @@
+var x = 0;
 (function($) {
     var metodos = {
         inicio: function() {
+            // que el programador diga el id
             $(this).append('<ul></ul>');
             $(this).children([0]).attr('id', 'lista');
             return;
         },
     
-        addSection: function(texto, posicion) {
-            var p = parseInt(posicion)+1;
-            // usar append y si esta ya usado que le pregunte si lo quiere modificar
-            if ($(this).children().length > 0) {
-                // $(`<li>${texto}</li>`).insertAfter(`li:eq(${p})`);
-                $(this).after(`<li>${texto}</li>`);
-            } else {
-                $(this).append(`<li>${texto}</li>`);
-            }
-
+        addSection: function(texto, id) {
+            // que el programador diga el id
+            // comprobar si el id no esta usado
+            $(this).append(`<li>${texto}</li>`);
         },
 
         delSection: function() {
@@ -30,6 +26,7 @@
                     $(this).remove();
                 }
             } else {
+                console.log('jjjj');
                 $(this).remove();
             }
         },
@@ -38,6 +35,8 @@
             if ($(this).children().length <= 0) {
                 $(this).append(`<ul></ul>`);
                 $(this).children([0]).attr('class', 'sub');
+                $(this).children([0]).attr('id', `lista${x}`);
+                x++;
                 $(this).children([0]).append(`<li>${texto}</li>`);
             } else {
                 $(this).children([0]).append(`<li>${texto}</li>`);
