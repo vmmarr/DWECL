@@ -1,17 +1,23 @@
 var x = 0;
 (function($) {
     var metodos = {
-        inicio: function() {
-            // que el programador diga el id
-            $(this).append('<ul></ul>');
-            $(this).children([0]).attr('id', 'lista');
-            return;
+        inicio: function(id) {
+            if ($(`[id=${id}]`).length >0) {
+                console.log('El identificador existe');
+            } else {
+                $(this).append('<ul></ul>');
+                $(this).children([0]).attr('id', `${id}`);
+                return;
+            }
         },
     
         addSection: function(texto, id) {
-            // que el programador diga el id
-            // comprobar si el id no esta usado
-            $(this).append(`<li>${texto}</li>`);
+            if ($(`[id=${id}]`).length >0) {
+                console.log('El identificador existe');
+            } else {
+                $(this).append(`<li>${texto}</li>`);
+                $(`li:contains(${texto})`).attr('id', `${id}`);
+            }
         },
 
         delSection: function() {
@@ -31,15 +37,26 @@ var x = 0;
             }
         },
 
-        addOption: function(texto) {
+        addOption: function(texto, id, clase) {
+            // if ($(`[id=${id}]`).length > 0) {
+            //     console.log('El identificador existe');
+            // }
+            console.log(id);
             if ($(this).children().length <= 0) {
-                $(this).append(`<ul></ul>`);
-                $(this).children([0]).attr('class', 'sub');
-                $(this).children([0]).attr('id', `lista${x}`);
-                x++;
-                $(this).children([0]).append(`<li>${texto}</li>`);
+                console.log(id);
+                console.log($(this).children());
+                $(this).append('<ul></ul>');
+                $(this).children([1]).attr('class', `${clase}`);
+
+                $(this).children([1]).append(`<li>${texto}</li>`);
+                //$('li').text(`${texto}`).attr('id', `${id}`);
+                console.log($(`li:contains(${texto})`));
+                $(`li:contains(${texto})`).attr('id', `${id}`);
+                console.log(id);
             } else {
-                $(this).children([0]).append(`<li>${texto}</li>`);
+                $(this).children([1]).append(`<li>${texto}</li>`);
+                $('li').text(`${texto}`).attr('id', `${id}`);
+                //$(`li:contains(${texto})`).attr('id', `${id}`);
             }
         },
 

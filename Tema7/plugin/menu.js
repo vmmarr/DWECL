@@ -1,32 +1,36 @@
 $(document).ready(function() {
-    $('body').llamar('inicio');
+    var nombreMenu = prompt('Introduce el nombre de tu menu');
+    $('body').llamar('inicio', `${nombreMenu}`);
 
     $('body').append('<button>Añadir</button>');
     $('button:eq(0)').attr('id', 'boton1');
     $('#boton1').click(function () { 
         var texto = prompt('Introduce el nombre de la seccion');
-        $('#lista').llamar('addSection', `${texto}`);
+        var id = prompt('Introduce el identificador de la seccion');
+        $(`#${nombreMenu}`).llamar('addSection', `${texto}`, `1`);
     });
     
     $('body').append('<button>Añadir Subseccion</button>');
     $('button:eq(1)').attr('id', 'boton2');
     $('#boton2').click(function () { 
-        var texto = prompt('Introduce el nombre de la seccion en la que quieres la subseccion');
-        var s = prompt('Introduce el titulo de la subseccion');
-        $('#lista').find(`li:contains(${texto})`).llamar('addOption', `${s}`);
+        var idSeccion = prompt('Introduce el identificador de la seccion en la que quieres la subseccion');
+        var contenido = prompt('Introduce el titulo de la subseccion');
+        var idSub = prompt('Introduce el identificador de la subseccion');
+        var clase = prompt('Introduce la clase');
+        $(`[id=${idSeccion}]`).llamar('addOption', `${contenido}`, `${idSub}`, `${clase}`);
     });
 
-    $('body').append('<button>Borrar Seccion</button>');
-    $('button:eq(2)').attr('id', 'boton3');
-    $('#boton3').click(function () { 
-        var texto = prompt('Introduce el nombre de la seccion quieres borrar');
-        if ($('#lista').find(`li:contains(${texto})`).length > 0) {
-            $('#lista').find(`li:contains(${texto})`).llamar('delSection');
-        } else  {
-            alert('La seccion a borrar no existe');
-        }
+    // $('body').append('<button>Borrar Seccion</button>');
+    // $('button:eq(2)').attr('id', 'boton3');
+    // $('#boton3').click(function () { 
+    //     var texto = prompt('Introduce el nombre de la seccion quieres borrar');
+    //     if ($('#lista').find(`li:contains(${texto})`).length > 0) {
+    //         $('#lista').find(`li:contains(${texto})`).llamar('delSection');
+    //     } else  {
+    //         alert('La seccion a borrar no existe');
+    //     }
         
-    });
+    // });
 
     // $('body').append('<button>Borrar Subseccion</button>');
     // $('button:eq(3)').attr('id', 'boton4'); 
