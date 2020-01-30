@@ -7,30 +7,30 @@ $(document).ready(function() {
     $('#boton1').click(function () { 
         var texto = prompt('Introduce el nombre de la seccion');
         var id = prompt('Introduce el identificador de la seccion');
-        $(`#${nombreMenu}`).llamar('addSection', `${texto}`, `1`);
+        $(`#${nombreMenu}`).llamar('addSection', `${texto}`, `${id}`);
     });
     
     $('body').append('<button>Añadir Subseccion</button>');
     $('button:eq(1)').attr('id', 'boton2');
     $('#boton2').click(function () { 
-        var idSeccion = prompt('Introduce el identificador de la seccion en la que quieres la subseccion');
+        var idSeccion = prompt('Identificador de seccion para crear subseccion');
         var contenido = prompt('Introduce el titulo de la subseccion');
-        var idSub = prompt('Introduce el identificador de la subseccion');
-        var clase = prompt('Introduce la clase');
-        $(`[id=${idSeccion}]`).llamar('addOption', `${contenido}`, `${idSub}`, `${clase}`);
+        var idSub = prompt('Introduce el identificadoor de la subseccion');
+        if ($(`[id=${idSeccion}]`).children().length <= 0) {
+            var clase = prompt('Introduce la clase');
+            $(`[id=${idSeccion}]`).llamar('addOption', `${contenido}`, `${idSub}`, `${clase}`);
+        } else {
+            $(`[id=${idSeccion}]`).llamar('addOption', `${contenido}`, `${idSub}`);
+        }
     });
 
-    // $('body').append('<button>Borrar Seccion</button>');
-    // $('button:eq(2)').attr('id', 'boton3');
-    // $('#boton3').click(function () { 
-    //     var texto = prompt('Introduce el nombre de la seccion quieres borrar');
-    //     if ($('#lista').find(`li:contains(${texto})`).length > 0) {
-    //         $('#lista').find(`li:contains(${texto})`).llamar('delSection');
-    //     } else  {
-    //         alert('La seccion a borrar no existe');
-    //     }
+    $('body').append('<button>Borrar Seccion</button>');
+    $('button:eq(2)').attr('id', 'boton3');
+    $('#boton3').click(function () { 
+        var nombre = prompt('Introduce el nombre de la seccion quieres borrar');
         
-    // });
+        $(`#${nombreMenu}>li`).llamar('delSection', `${nombre}`); 
+    });
 
     // $('body').append('<button>Borrar Subseccion</button>');
     // $('button:eq(3)').attr('id', 'boton4'); 

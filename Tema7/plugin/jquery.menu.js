@@ -20,43 +20,54 @@ var x = 0;
             }
         },
 
-        delSection: function() {
-            // Comprobar si la seccion tiene hijos probando con el metodo find() o con el children()
-            // amboos con el .length
+        addOption: function(texto, id, clase) {
+            if ($(`[id=${id}]`).length > 0) {
+                console.log('El identificador existe');
+            }
+            if ($(this).children().length <= 0) {
+                $(this).append('<ul></ul>');
+                $(this).children([0]).attr('class', `${clase}`);
 
-            // No  funciona bien
-            if ($(this).children().length > 0)  {
+                $(this).children([0]).append(`<li>${texto}</li>`);
+                
+                $('li').each(function() {
+                    if ($(this).text() == texto) {
+                        $(this).attr('id', `${id}`);
+                    }
+                });
+            } else {
+                $(this).children([0]).append(`<li>${texto}</li>`);
+                $('li').each(function() {
+                    if ($(this).text() == texto) {
+                        $(this).attr('id', `${id}`);
+                    }
+                });
+            }
+        },
+
+        delSection: function(nombre) {
+            // var x = 0;
+            // $(this).each(function() {
+            //     if ($(this).text() == nombre) {
+            //         x++;
+            //     }
+            // });
+
+            // console.log(x);
+
+            var r =  ($(this).text() == nombre);
+
+            console.log(r);
+
+            if ($(`${r}`).children().length > 0)  {
                 console.log('dhhd');
                 var c = confirm('¿Deseas borrar la seleccion y todos sus hijos?');
                 if (c == true) {
-                    $(this).remove();
+                    $(`${r['id']}`).remove();
                 }
             } else {
                 console.log('jjjj');
                 $(this).remove();
-            }
-        },
-
-        addOption: function(texto, id, clase) {
-            // if ($(`[id=${id}]`).length > 0) {
-            //     console.log('El identificador existe');
-            // }
-            console.log(id);
-            if ($(this).children().length <= 0) {
-                console.log(id);
-                console.log($(this).children());
-                $(this).append('<ul></ul>');
-                $(this).children([1]).attr('class', `${clase}`);
-
-                $(this).children([1]).append(`<li>${texto}</li>`);
-                //$('li').text(`${texto}`).attr('id', `${id}`);
-                console.log($(`li:contains(${texto})`));
-                $(`li:contains(${texto})`).attr('id', `${id}`);
-                console.log(id);
-            } else {
-                $(this).children([1]).append(`<li>${texto}</li>`);
-                $('li').text(`${texto}`).attr('id', `${id}`);
-                //$(`li:contains(${texto})`).attr('id', `${id}`);
             }
         },
 
