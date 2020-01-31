@@ -1,5 +1,24 @@
-/* .boton {
-    background-color: #FFCCFF;
-    position: absolute;
-    top: 80px;
-} */
+.boton {
+    margin-top: 10%;
+}
+
+ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+li {
+    display: block;
+    padding: 2em;
+    background-color: #F9B53C;
+    text-decoration: none;
+    color: #191C26;
+}
+li:hover {
+    background-color: #CC673B;
+}
+
+.lista2:hover {
+    display: block;
+}

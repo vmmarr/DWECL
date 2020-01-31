@@ -16,19 +16,24 @@ var x = 0;
                 console.log('El identificador existe');
             } else {
                 $(this).append(`<li>${texto}</li>`);
-                $(`li:contains(${texto})`).attr('id', `${id}`);
+                $('li').each(function() {
+                    if ($(this).text() == texto) {
+                        $(this).attr('id', `${id}`);
+                    }
+                });
             }
         },
 
-        addOption: function(texto, id, clase) {
+        addOption: function(texto, id) {
             if ($(`[id=${id}]`).length > 0) {
                 console.log('El identificador existe');
             }
             if ($(this).children().length <= 0) {
                 $(this).append('<ul></ul>');
-                $(this).children([0]).attr('class', `${clase}`);
+                $(this).children([0]).append('<div></div>');
+                $(this).children([0]).attr('class', 'lista2');
 
-                $(this).children([0]).append(`<li>${texto}</li>`);
+                $(this).children([1]).append(`<li>${texto}</li>`);
                 
                 $('li').each(function() {
                     if ($(this).text() == texto) {
@@ -45,38 +50,27 @@ var x = 0;
             }
         },
 
-        delSection: function(nombre) {
-            // var x = 0;
-            // $(this).each(function() {
-            //     if ($(this).text() == nombre) {
-            //         x++;
-            //     }
-            // });
-
-            // console.log(x);
-
-            var r =  ($(this).text() == nombre);
-
-            console.log(r);
-
-            if ($(`${r}`).children().length > 0)  {
-                console.log('dhhd');
-                var c = confirm('¿Deseas borrar la seleccion y todos sus hijos?');
-                if (c == true) {
-                    $(`${r['id']}`).remove();
+        delSection: function() {
+            if ($(this).length > 0) {
+                if ($(this).children().length > 0)  {
+                    var c = confirm('¿Deseas borrar la seleccion y todos sus hijos?');
+                    if (c == true) {
+                        $(this).remove();
+                    }
+                } else {
+                    $(this).remove();
                 }
             } else {
-                console.log('jjjj');
-                $(this).remove();
+                console.log('Esa seccion no existe');
             }
         },
 
         delOption: function() {
-            // Comprobar si la seccion tiene hijos probando con el metodo find() o coon el children()
-            // amboos con el .length
-
-            // No funciona bien
-            $(this).remove();
+            if ($(this).length > 0) {
+                $(this).remove();
+            } else {
+                console.log('Esa opcion no existe');
+            }
         }
     };
     
@@ -91,5 +85,3 @@ var x = 0;
         }
     };
 })(jQuery);
-
-
