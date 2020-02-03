@@ -30,10 +30,7 @@ var x = 0;
             }
             if ($(this).children().length <= 0) {
                 $(this).append('<ul></ul>');
-                $(this).children([0]).append('<div></div>');
-                $(this).children([0]).attr('class', 'lista2');
-
-                $(this).children([1]).append(`<li>${texto}</li>`);
+                $(this).children([0]).append(`<li>${texto}</li>`);
                 
                 $('li').each(function() {
                     if ($(this).text() == texto) {

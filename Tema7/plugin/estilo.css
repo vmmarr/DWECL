@@ -8,9 +8,9 @@ ul {
     margin: 0;
     list-style: none;
 }
-li {
+body>ul>li {
     display: block;
-    padding: 2em;
+    padding: 1%;
     background-color: #F9B53C;
     text-decoration: none;
     color: #191C26;
@@ -19,6 +19,14 @@ li:hover {
     background-color: #CC673B;
 }
 
-.lista2:hover {
-    display: block;
+ul li ul {
+    background-color: #F9B53C;
+    margin: 1%;
+    display:none;
+    position:absolute;
+    min-width:140px;
+}
+
+ul li:hover > ul {
+    display:block;
 }
