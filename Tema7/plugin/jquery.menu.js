@@ -27,7 +27,7 @@ var x = 0;
         addOption: function(texto, id) {
             if ($(`[id=${id}]`).length > 0) {
                 console.log('El identificador existe');
-            }
+            } 
             if ($(this).children().length <= 0) {
                 $(this).append('<ul></ul>');
                 $(this).children([0]).append(`<li>${texto}</li>`);
