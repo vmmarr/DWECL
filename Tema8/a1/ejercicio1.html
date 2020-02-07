@@ -27,7 +27,7 @@
 			function procesaRespuesta() { 
 				if (peticion_http.readyState == READY_STATE_COMPLETE) { 
 					if (peticion_http.status ==200) {      
-						document.getElementById("respuesta").innerHTML = peticion_http.responseText;    
+						document.getElementById("disponibilidad").innerHTML = peticion_http.responseText;    
 					}   
 				}
 			}
@@ -43,8 +43,8 @@
 		<h1>Comprobar disponibilidad del login</h1>
 		<form>
 			<label for="login">Nombre de usuario:</label>
-			<input type="text" name="login" id="login" onchange="valida()"/>
-			<input type="button" id="comprobar" Value="Comprobar disponibilidad">
+			<input type="text" name="login" id="nombre"/>
+			<input type="button" id="comprobar" Value="Comprobar disponibilidad" onclick="valida()">
 		</form>
 		<br><br>
 		<div id="disponibilidad"></div>
