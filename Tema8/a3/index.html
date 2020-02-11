@@ -14,27 +14,33 @@
 					return new ActiveXObject("Microsoft.XMLHTTP");  
 				}  
 			}
+
 			function valida() {   
 				peticion_http = inicializa_xhr();
 				if (peticion_http) {     
 					peticion_http.onreadystatechange = procesaRespuesta;    
-					peticion_http.open("POST","http://localhost:8080/serve.php",true);    
-					peticion_http.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-					var query_string = crea_query_string();    
-					peticion_http.send(query_string); 
+					peticion_http.open("POST","http://localhost:8000/serve.php",true);    
+					peticion_http.setRequestHeader("Content-Type","application/json");
+					var objeto_json = JSON.stringify({'login': document.getElementById('login').value}); 
+					peticion_http.send(objeto_json); 
 				} 
 			} 
-			function procesaRespuesta() { 
-				if (peticion_http.readyState == READY_STATE_COMPLETE) { 
-					if (peticion_http.status ==200) {      
-						document.getElementById("respuesta").innerHTML = peticion_http.responseText;    
-					}   
+			
+			function procesaRespuesta() {
+				if (peticion_http.readyState ==READY_STATE_COMPLETE) {
+					if (peticion_http.status ==200) {
+						var objeto_json = JSON.parse(peticion_http.responseText);
+						if (objeto_json.disponible == 'no') {
+							var alternativas ='';
+							for(i=0;i<objeto_json.alternativas.length;i++){
+								alternativas += objeto_json.alternativas[i] + '<br>' ;
+							}
+							document.getElementById('disponibilidad').innerHTML= `${objeto_json.disponible}!<br>Alternativas:<br> ${alternativas}`;
+						} else {
+							document.getElementById('disponibilidad').innerHTML= `${objeto_json.disponible}`;
+						}
+					}
 				}
-			}
-
-			function crea_query_string() { 
-				var nombre = document.getElementById("nombre");
-				return "nombre="+ encodeURIComponent(nombre.value) + "&nocache="+Math.random();
 			}
 		</script>
 	</head>
