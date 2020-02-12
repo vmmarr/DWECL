@@ -3,52 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Actividad 1</title>
     <script type="text/javascript">
-        var READY_STATE_COMPLETE=4;
-        var peticion_http =null;
-        function inicializa_xhr() { 
-            if(window.XMLHttpRequest) { 
-                return new XMLHttpRequest();  
-            } else if(window.ActiveXObject) { 
-                return new ActiveXObject("Microsoft.XMLHTTP");  
-            }  
-        }
-
         function valida() {   
-            peticion_http = inicializa_xhr();
-            if (peticion_http) {     
-                peticion_http.onreadystatechange = procesaRespuesta;    
-                peticion_http.open("POST","http://localhost:8000/servidor.php",true);    
-                peticion_http.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-                var query_string = crea_query_string();    
-                peticion_http.send(query_string); 
-            } 
+            var parametros = {
+                fecha_nacimiento: $('#fecha_nacimiento').val(),
+                codigo_postal: $('#codigo_postal').val(),
+                telefono: $('#telefono').val()
+            };
+                 
+            //jQuery.post( url [, data ] [, success ] [, dataType ] )
+            $.post("servidor.php" , parametros, procesaRespuesta);
         } 
-        function procesaRespuesta() { 
-            if (peticion_http.readyState == READY_STATE_COMPLETE) { 
-                if (peticion_http.status == 200) {      
-                    $('#texto').text(peticion_http.responseText);    
-                }   
-            }
-        }
 
-        function crea_query_string() { 
-            var fecha = $('#fecha_nacimento').val;
-            var cod = $('#codigo_postal').val;
-            var tel = $('#telefono').val;
-            return "nombre="+ encodeURIComponent(nombre.value) + "&nocache="+Math.random();
+        function procesaRespuesta(r) { 
+            $('#texto').html(r);       
         }
     </script>
 </head>
 <body>
     <form>
         <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-        <input type="text" name="fecha_nacimiento" id="fecha_nacimiento"/>
+        <input type="text" name="fecha_nacimiento" id="fecha_nacimiento"/><br>
         <label for="codigo_postal">Codigo postal:</label>
-        <input type="text" name="codigo_postal" id="codigo_postal"/>
+        <input type="text" name="codigo_postal" id="codigo_postal"/><br>
         <label for="telefono">telefono:</label>
-        <input type="text" name="telefono" id="telefono"/>
+        <input type="text" name="telefono" id="telefono"/><br>
         <input type="button" id="comprobar" Value="Validar datos" onclick="valida()">
     </form>
     <br><br>
