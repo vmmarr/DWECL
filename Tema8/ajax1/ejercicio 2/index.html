@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<title>Document</title>
+	<script type="text/javascript">
+        function procesaRespuesta(data) { 
+			$('div').each(function(i) {
+				$(`div:eq(${i}) > h3`).append(`${data[i].name}`);
+				$(`div:eq(${i}) > p`).append(`${data[i].price}`);
+			});
+        }
+
+		function consulta() {   
+            //jQuery.post( url [, data ] [, success ] [, dataType ] )
+            $.post("servidor.php", procesaRespuesta);  
+        } 
+    </script>
+</head>
+<body>
+	<button onclick="consulta()">Mostrar tours</button>
+	<h2>Tours actuales</h2>
+	<div class="tour-0">
+	  <h3 class="name"></h3>
+	  <p class="price"></p>
+	</div>
+
+	<div class="tour-1">
+	  <h3 class="name"></h3>
+	  <p class="price"></p>
+	</div>
+
+	<div class="tour-2">
+	  <h3 class="name"></h3>
+	  <p class="price"></p>
+	</div>
+	
+</body>
+</html>

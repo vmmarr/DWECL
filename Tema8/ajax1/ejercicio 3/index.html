@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		function procesaRespuesta(data) {
+			for (var i = 0; i < data.length; i++) {
+					$('ul').append(`<li>${data[i].flightNumber}-${data[i].time} </li>`)
+				}
+		}
+		
+		function consulta() {   
+            $.post("servidor.php", procesaRespuesta);  
+        } 
+	</script>
+</head>
+<body>
+	<button class="update-available-flights" onclick="consulta()">Ver vuelos</button>
+	<div class="flights">
+	  <ul class="flight-times">
+
+	  </ul>
+	</div>
+	
+</body>
+</html>

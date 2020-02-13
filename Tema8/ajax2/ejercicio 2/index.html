@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<title>Document</title>
+	<script type="text/javascript">
+        function procesaRespuesta(data) {
+			var x = $('#texto').val().toUpperCase();
+			if (x == '1DAW') {
+				$('ul').append('<strong>1DAW</strong>');
+				for (var j = 0; j < data[0].length; j++) {
+					$(`ul`)
+					.append(`<li> Nombre: ${data[0][j].nombre}, Dni: ${data[0][j].dni}, Acceso: ${data[0][j].acceso} </li>`);
+				}
+			} else if (x == '2DAW') {
+				$('ul').append('<strong>2DAW</strong>');
+				for (var j = 0; j < data[1].length; j++) {
+					$(`ul`)
+					.append(`<li> Nombre: ${data[1][j].nombre}, Dni: ${data[1][j].dni}, Acceso: ${data[1][j].acceso} </li>`);
+				}
+			}           
+        }
+
+		function consulta() {   
+           $.post("servidor.php", procesaRespuesta);  
+        } 
+    </script>
+</head>
+<body>
+	<label for="texto">Introduzca el curso a consultar:</label>
+	<input type="text" id="texto" name="texto"/>
+	<button onclick="consulta()">Ver cursos</button>
+	<br>
+	<ul></ul>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<title>Document</title>
+	<script type="text/javascript">
+        function procesaRespuesta(data) { 
+            $('li ul').each(function(i) {
+                for (var j = 0; j < data.length; j++) {
+                    $(`li ul:eq(${i})`)
+                    .append(`<li> Nombre: ${data[i][j].nombre}, Dni: ${data[i][j].dni}, Acceso: ${data[i][j].acceso}</li>`)
+                }
+            });
+        }
+
+		function consulta() {   
+           $.post("servidor.php", procesaRespuesta);  
+        } 
+    </script>
+</head>
+<body>
+	<button onclick="consulta()">Ver cursos</button>
+    <div>
+        <ul>
+            <li><strong>1 Daw</strong>
+                <ul>
+
+                </ul>
+            </li>
+            <li><strong>2 Daw</strong>
+                <ul>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

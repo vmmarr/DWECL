@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<title>Document</title>
+	<style>
+		table, th, td {
+			border: 1px solid;
+		}
+	</style>
+	<script type="text/javascript">
+        function procesaRespuesta(data) {
+			var x = $('#texto').val().toUpperCase();
+			if (x == '1DAW') {
+				$('p').append('Lista de alumnos matriculados en 1º DAW ');
+				for (var j = 0; j < data[0].length; j++) {
+					$('table')
+					.append('<tr><th>Nombre</th><th>DNI</th><th>ACCESO</th></tr>');
+					$('table').append(`<tr>
+						<td>${data[0][j].nombre}</td>
+						<td>${data[0][j].dni}</td>
+						<td>${data[0][j].acceso}</td>
+					</tr>`);
+				}
+			} else if (x == '2DAW') {
+				$('p').append('Lista de alumnos matriculados en 2º DAW ');
+				for (var j = 0; j < data[1].length; j++) {
+					$('table')
+					.append('<tr><th>Nombre</th><th>DNI</th><th>ACCESO</th></tr>');
+					$('table').append(`<tr>
+						<td>${data[1][j].nombre}</td>
+						<td>${data[1][j].dni}</td>
+						<td>${data[1][j].acceso}</td>
+					</tr>`);
+				}
+			}           
+        }
+
+		function consulta() {   
+           $.post("servidor.php", procesaRespuesta);  
+        } 
+    </script>
+</head>
+<body>
+	<label for="texto">Introduzca el curso a consultar:</label>
+	<input type="text" id="texto" name="texto"/>
+	<button onclick="consulta()">Ver cursos</button>
+	<br>
+	<p></p>
+	<table></table>
+</body>
+</html>
