@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<style>
+	  	#sortable {  margin: 0; 
+			padding: 0; 
+			width: 550px; 
+	  	}
+
+	  	#sortable li { 
+			list-style: none; 
+	  		margin: 3px 3px 3px 0; 
+			padding: 1px; 
+			float: left;
+			width: 100px; 
+			height: 90px; 
+			font-size: 4em; 
+			text-align: center; 
+			border:1px solid; 
+		}
+
+	  	.oculto {
+			visibility: hidden;
+		}
+  	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		window.onload = function() {
+			$('#sortable').sortable();
+			$('span').attr('class', 'oculto');
+			$('button').click(function() {
+				$('span').attr('class', '');
+				$( "#dialog" ).dialog();
+			});
+
+
+		}
+		
+	</script>
+</head>
+<body>
+	<ul id="sortable">
+	  <li class="ui-state-default"><span>I</span></li>
+	  <li class="ui-state-default"><span>E</span></li>
+	  <li class="ui-state-default"><span>A</span></li>
+	  <li class="ui-state-default"><span>O</span></li>
+	  <li class="ui-state-default"><span>U</span></li>
+	  
+	</ul>
+	<button>Comprobar</button>
+
+	<div id="dialog" title="Estado de la partida">
+		<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+	</div>
+</body>
+</html>

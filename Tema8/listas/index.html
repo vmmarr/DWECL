@@ -6,20 +6,6 @@
 		<title> Listas desplegables encadenadas - json </title>
 		<script type="text/javascript">
 			window.onload = function() {
-				function procesaRespuesta(datos) { 
-					var json = JSON.parse(datos);
-					var $provincias = $('#provincia');
-
-					$.each(json, (k, v)=>{
-						$(`<option value="${k}">${v}</option>`)
-						.appendTo($provincias);
-					});
-				}
-				
-				$.get("cargaProvinciasJSON.php", procesaRespuesta);  
-				//$.get("cargaMunicipiosJSON.php", procesaRespuesta);  
-			
-			
 				function ordenar(){
 					$("select").each(function(index,elem) {
 						//guardamos la opción seleccionada
@@ -37,6 +23,59 @@
 						$(listaActual).prop('selectedIndex', sel); //listaActual.selectedIndex = sel;
 					});
 				}
+
+				function procesaRespuesta(datos) { 
+					var json = JSON.parse(datos);
+					var $provincias = $('#provincia');
+
+					$.each(json, (k, v)=>{
+						$(`<option value="${k}">${v}</option>`).appendTo($provincias);
+					});
+				}
+				
+				function cargarProvincias() {
+					 $.get("cargaProvinciasJSON.php")
+					 .done(function (data){
+						 procesaRespuesta(data);
+						 ordenar();
+					 });  
+				}
+
+				function cargaMunicipios() {
+					if ((prov = $('#provincia').val()) != '-selecciona-') {
+						$.post("cargaMunicipiosJSON.php", {
+							provincia: prov
+						})
+						.done(function (data){
+							tomaMunicipios(data);
+						 	ordenar();
+					 	}); 
+					}else {
+						var $municipios = $('#municipio');
+						$municipios.children().remove(); 
+						$('<option>-selecciona una provincia-</option>')
+						.appendTo($municipios);
+					}
+				}
+
+				function tomaMunicipios(datos)
+				{
+					var json = JSON.parse(datos);
+					var $municipios = $('#municipio');
+					$municipios.children().remove(); 
+					$(`<option>-selecciona una provincia-</option>`)
+					.appendTo($municipios);
+
+					$.each(json, (k, v)=>{
+						$(`<option value="${k}">${v} </option>`)
+						.appendTo($municipios);
+					});
+				}
+  
+				cargarProvincias();
+				$('#provincia').on('change',function(){
+					cargaMunicipios();
+				});
 			}
 		
 		</script>
