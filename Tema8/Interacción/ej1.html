@@ -25,36 +25,125 @@
 	  	.oculto {
 			visibility: hidden;
 		}
-  	</style>
+	  </style>
+	  <link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 		window.onload = function() {
-			$('#sortable').sortable();
-			$('span').attr('class', 'oculto');
-			$('button').click(function() {
-				$('span').attr('class', '');
-				$( "#dialog" ).dialog();
+			function shuffleArray(array) {
+				for (var i = array.length - 1; i > 0; i--) {
+					var j = Math.floor(Math.random() * (i + 1));
+					var temp = array[i];
+					array[i] = array[j];
+					array[j] = temp;
+				}
+			}
+			var orden = ['a', 'e', 'i', 'o', 'u'];
+			var otro = [];
+			for (var i = 0; i < orden.length; i++) {
+				otro.push(orden[i]);
+			}
+			shuffleArray(otro);
+			
+			var solu = [];
+			var x = 1;
+			var aciertos = 0;
+			$('li > span').each(function(i) {
+				$(this).text(otro[i].toUpperCase());
 			});
+			$('#sortable').sortable();
+			$('span').addClass('oculto');
+			$('button').addClass('ui-button ui-widget ui-corner-allS');
+			$('button').button();
+			
+			var s = '';
+			$('button').click(function(event) {
+				if (x == 1) {
+					event.preventDefault();
+					$('p').removeClass('oculto');
+
+					$('li > span').each(function() {
+						solu.push($(this).text());
+					});
+
+					for (var i = 0; i < orden.length; i++) {
+						orden[i] = orden[i].toUpperCase();
+						if (orden[i] == solu[i]) { 
+							aciertos++;
+						} 
+					}
+					
+					for (var i = 0; i < solu.length; i++) {
+						s = s + solu[i];					
+					}
+
+					$('#texto').text(`1 Intento: ${s}`);
+
+					if (aciertos == 5) {
+						$('p').text('Solucion correcta');
+						$( "#dialog" ).dialog();
+						return;
+					} else {
+						$( "#dialog" ).dialog();
+						$('p').text('Solucion erronea');
+					}
+					x++;
+				} else if (x == 2) {
+					event.preventDefault();
+					$('p').removeClass('oculto');
+					s= '';
+					solu = [];
+					$('li > span').each(function() {
+						solu.push($(this).text());
+					});
+					for (var i = 0; i < solu.length; i++) {
+						s = s + solu[i];					
+					}
+
+					$('#texto2').text(`2 Intento: ${s}`);
+
+					$('li > span').each(function() {
+						solu.push($(this).text());
+					});
 
 
+					for (var i = 0; i < orden.length; i++) {
+						orden[i] = orden[i].toUpperCase();
+						if (orden[i] == solu[i]) { 
+							aciertos++;
+						} 
+					}
+
+					if (aciertos == 5) {
+						$('p').text('Solucion correcta');
+						$( "#dialog" ).dialog();
+						return;
+					} else {
+						$('p').text('Has perdido, partida terminada');
+						$( "#dialog" ).dialog();
+						return;
+					}
+				}
+			});
 		}
-		
 	</script>
 </head>
 <body>
 	<ul id="sortable">
-	  <li class="ui-state-default"><span>I</span></li>
-	  <li class="ui-state-default"><span>E</span></li>
-	  <li class="ui-state-default"><span>A</span></li>
-	  <li class="ui-state-default"><span>O</span></li>
-	  <li class="ui-state-default"><span>U</span></li>
+	  <li class="ui-state-default"><span></span></li>
+	  <li class="ui-state-default"><span></span></li>
+	  <li class="ui-state-default"><span></span></li>
+	  <li class="ui-state-default"><span></span></li>
+	  <li class="ui-state-default"><span></span></li>
 	  
 	</ul>
-	<button>Comprobar</button>
+	<button id="comprobar">Comprobar</button>
+	<div id="texto"></div>
+	<div id="texto2"></div>
 
 	<div id="dialog" title="Estado de la partida">
-		<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+		<p></p>
 	</div>
 </body>
 </html>
