@@ -3,38 +3,63 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	
-	<link href="jquery-ui.css" rel="stylesheet">
-	
 	<style>
-	 
- 	.container {
-	  				display: flex; 
-	  				justify-content: center;
-	  				min-height: 150px;
-	  				align-items:center;
-	}
+		.container {
+			display: flex; 
+			justify-content: center;
+			min-height: 150px;
+			align-items:center;
+		}
 
-	  .drag,.drop {  width: 250px; text-align: center;border: 1px solid; font-size: 1.5em;}
+	  	.drag,.drop {  
+			width: 250px; 
+			text-align: center;
+			border: 1px solid; 
+			font-size: 1.5em;
+		}
 
-	  .drop {background-color: blue; color:white;}
-	  
-	   
-	 
+	  	.drop {
+			background-color: blue; 
+			color:white;
+		}
   	</style>
 
+	<link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		window.onload = function() {
+			$('#metodos').sortable();
+			$('#metodos').addClass('container');
+			$('#lenguaje').addClass('container');
+			$('#metodos>*').addClass('drag');
+			$('#lenguaje>*').addClass('drop');
 
+			$('#metodos>*').draggable({
+				revert: "invalid"
+			});
+
+			$('#lenguaje div:eq(0)').droppable({
+				accept: '.javascript',
+			});
+
+			$('#lenguaje div:eq(1)').droppable({
+				accept: '.jquery'
+			});
+		}
+	</script>
 </head>
 <body>
-	<div>
-		<div><p>$('#selector')</p></div>
-	    <div><p>getElementById()</p></div>
-	    <div><p>$.each()</p></div>
-	    <div><p>send()</p></div>
-	    <div><p>$.post()</p></div>	
+	<div id="metodos">
+		<div class="jquery"><p>$('#selector')</p></div>
+	    <div class="javascript"><p>getElementById()</p></div>
+	    <div class="jquery"><p>$.each()</p></div>
+	    <div class="javascript"><p>send()</p></div>
+	    <div class="jquery"><p>$.post()</p></div>	
 	</div>
 	<div ></div>  
-	<div>
+
+	<div id="lenguaje">
 		<div><p>JAVASCRIPT</p></div>
 	    <div><p>JQUERY</p></div>	
 	</div>
