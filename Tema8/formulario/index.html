@@ -17,13 +17,30 @@
 	    form {
 			margin:20px;
 		}
+
+		.ui-selectmenu-menu .ui-menu.customicons .ui-menu-item {
+      padding: 0.5em 0 0.5em 3em;
+    }
+    .ui-selectmenu-menu .ui-menu.customicons .ui-menu-item .ui-icon {
+      height: 48px;
+      width: 48px;
+      top: 0.1em;
+    }
+	
+    /* select with CSS avatar icons */
+    option.avatar {
+      background-repeat: no-repeat !important;
+      padding-left: 20px;
+    }
+    .avatar .ui-icon {
+      background-position: left top;
+    }
+
 	</style>
 	<link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
-	
-	
+		
 	<script>
 		window.onload = function() {
 			$.datepicker.regional['es'] = {
@@ -43,15 +60,55 @@
 			$.datepicker.setDefaults($.datepicker.regional['es']);
 			$('#date').datepicker(
 				{
+				minDate: 0,
+				showAnim: "slideDown",
 				changeMonth: true,
       			changeYear: true,
-				showOn: "button",
+				showOn: "both",
+				buttonImageOnly: false,
 				buttonImage: "images/calendar.png",
-				buttonImageOnly: true,
-				buttonText: "Select date"
+				buttonText: "Seleccionar fecha"
 			});
-			//$( '#date' ).datepicker( $.datepicker.regional[ "es" ] );
 		}
+
+		$( function() {
+    $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
+      _renderItem: function( ul, item ) {
+        var li = $( "<li>" ),
+          wrapper = $( "<div>", { text: item.label } );
+ 
+        $( "<span>", {
+          style: item.element.attr( "data-style" ),
+          "class": "ui-icon " + item.element.attr( "data-class" )
+        }).appendTo( wrapper );
+ 
+        return li.append( wrapper ).appendTo( ul );
+      }
+    });
+ 
+    $( "#gender" ).iconselectmenu().iconselectmenu("menuWidget").addClass("ui-menu-icons");
+  		
+		  $( "input[name='subjects']" ).checkboxradio({
+			icon: false
+		  });
+
+		var t = $( "#modulos" ).append("<div id='slider'></div>")
+		$('#slider').hide();
+		var r = $( "input[name='subjects']:checked").length;
+		
+		$('#slider').slider({
+			value: r,
+			slide: function( event, ui ) {
+				r.selectedIndex = ui.value - 1;
+			}
+		});
+
+		$( "#input[name='subjects']:checked" ).on( "change", function(e) {
+			// console.log(e.length);
+			//$('#slider').slider({value:valor});
+		});
+  } );
+
 	</script>
 </head>
 <body>
@@ -81,7 +138,7 @@
 		    <input type="radio" name="studies" id="radio-4">
 		</fieldset>
 		
-		<fieldset>
+		<fieldset id="modulos">
 	    <legend>Módulos: </legend>
 	    <label>Programación
 	    	<input type="checkbox" name="subjects" value='prog'>
