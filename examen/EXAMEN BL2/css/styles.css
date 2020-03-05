@@ -1,0 +1,4 @@
+.borde {
+    border: dashed 2px gray;
+    display: table;
+}
